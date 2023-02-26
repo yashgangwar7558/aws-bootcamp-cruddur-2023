@@ -8,6 +8,8 @@ WORKDIR /backend-flask
 # RUN is a command that runs during the setup process for container, to configure the container to run application
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
+# to install curl in the container environment 
+RUN apt-get update && apt-get install -y curl
 
 # copy everything from main directory to inside container main directory(i.e above WORKDIR)
 COPY . .
