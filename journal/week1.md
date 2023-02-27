@@ -3,7 +3,7 @@
 <details open="open">
 <summary>Table of Contents</summary>
 
-- [Setting up Docker and Docker Desktop locally](#setting-up-docker-desktop-locally)
+- [Setting up Docker and Docker Desktop locally](#setting-up-docker-and-desktop-locally)
 - [](#)
 - [](#)
 - [](#)
