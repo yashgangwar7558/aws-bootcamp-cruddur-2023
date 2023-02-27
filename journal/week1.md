@@ -1,5 +1,17 @@
 # Week 1 — App Containerization
 
+<details open="open">
+<summary>Table of Contents</summary>
+
+- [Setting up Docker and Docker Desktop locally](#setting-up-docker-desktop-locally)
+- [](#)
+- [](#)
+- [](#)
+- [](#)
+- [](#)
+
+</details>
+
 ## Setting up Docker and Docker Desktop locally
 
 1) Install docker locally using this [Get docker](https://docs.docker.com/get-docker/).
