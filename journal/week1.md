@@ -4,13 +4,14 @@
 <summary>Table of Contents</summary>
 
 - [Setting up Docker and Docker Desktop locally](#setting-up-docker-and-docker-desktop-locally)
-- [](#)
-- [](#)
-- [](#)
-- [](#)
-- [](#)
+- [Pushing images to docker hub](#pushing-images-to-docker-hub)
+- [Running dockerfile CMD as an External Script](#running-dockerfile-cmd-as-an-external-script)
+- [Implementing health check on the docker containers](#implementing-health-check-on-the-docker-containers)
+- [Running docker containers on AWS EC2 Instance](#running-docker-containers-on-aws-ec2-instance)
+- [Tried using TruffleHog and BFG to clean the commit history](#tried-using-trufflehog-and-bfg-to-clean-the-commit-history)
 
 </details>
+
 
 ## Setting up Docker and Docker Desktop locally
 
