@@ -15,12 +15,12 @@ from services.create_message import *
 from services.show_activity import *
 
 # Honeycomb---------------------
-# from opentelemetry import trace
-# from opentelemetry.instrumentation.flask import FlaskInstrumentor
-# from opentelemetry.instrumentation.requests import RequestsInstrumentor
-# from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
-# from opentelemetry.sdk.trace import TracerProvider
-# from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry import trace
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+from opentelemetry.instrumentation.requests import RequestsInstrumentor
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
 # X-ray AWS--------------
 from aws_xray_sdk.core import xray_recorder
@@ -51,11 +51,12 @@ from flask import got_request_exception
 
 # Honeycomb--------------
 # Initialize tracing and an exporter that can send data to Honeycomb
-# provider = TracerProvider()
-# processor = BatchSpanProcessor(OTLPSpanExporter())
-# provider.add_span_processor(processor)
-# trace.set_tracer_provider(provider)
-# tracer = trace.get_tracer(__name__)
+provider = TracerProvider()
+processor = BatchSpanProcessor(OTLPSpanExporter())
+provider.add_span_processor(processor)
+trace.set_tracer_provider(provider)
+tracer = trace.get_tracer(__name__)
+tracer = trace.get_tracer("user.activites")
 
 app = Flask(__name__)
 
@@ -64,8 +65,8 @@ XRayMiddleware(app, xray_recorder)
 
 # Honeycomb--------------
 # Initialize automatic instrumentation with Flask
-# FlaskInstrumentor().instrument_app(app)
-# RequestsInstrumentor().instrument()
+FlaskInstrumentor().instrument_app(app)
+RequestsInstrumentor().instrument()
 
 frontend = os.getenv('FRONTEND_URL')
 backend = os.getenv('BACKEND_URL')
@@ -157,11 +158,19 @@ def data_notifications():
 @app.route("/api/activities/@<string:handle>", methods=['GET'])
 @xray_recorder.capture('activities_show')
 def data_handle(handle):
-  model = UserActivities.run(handle)
-  if model['errors'] is not None:
-    return model['errors'], 422
-  else:
-    return model['data'], 200
+  # honeycomb-----
+  with tracer.start_as_current_span("user-activities-mock-data"):
+    span = trace.get_current_span()
+    now = datetime.now(timezone.utc).astimezone()
+    span.set_attribute("app.now", now.isoformat())
+    model = UserActivities.run(handle)
+    if model['errors'] is not None:
+      span.set_attribute("user_name", handle)
+      return model['errors'], 422
+    else:
+      span.set_attribute("user_name", handle)
+      return model['data'], 200
+    span.set_attribute("user_name", handle)
 
 @app.route("/api/activities/search", methods=['GET'])
 def data_search():
