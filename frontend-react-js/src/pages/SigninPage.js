@@ -4,7 +4,7 @@ import {ReactComponent as Logo} from '../components/svg/logo.svg';
 import { Link } from "react-router-dom";
 
 // [TODO] Authenication
-import { Amplify } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 
 export default function SigninPage() {
 
@@ -26,7 +26,7 @@ export default function SigninPage() {
       if (error.code == 'UserNotConfirmedException') {
         window.location.href = "/confirm"
       }
-      setErrors("Email and password is incorrect or account doesn't exist")
+      setErrors(error.message)
     }
     return false
   }
