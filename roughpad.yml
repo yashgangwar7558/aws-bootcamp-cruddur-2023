@@ -1,0 +1,10 @@
+// test postgres running on docker 
+postgres connection url - "postgresql://postgres:password@localhost:5432/cruddur"
+export CONNECTION_URL="postgresql://postgres:password@localhost:5432/cruddur"
+gp env CONNECTION_URL="postgresql://postgres:password@localhost:5432/cruddur"
+
+// production rds on aws 
+rds pass - rdspassword
+export PROD_CONNECTION_URL="postgresql://cruddurroot:cruddurpassword@cruddur-db-instance.c9mq3ztn8syj.us-east-1.rds.amazonaws.com:5432/cruddur"
+gp env PROD_CONNECTION_URL="postgresql://cruddurroot:cruddurpassword@cruddur-db-instance.c9mq3ztn8syj.us-east-1.rds.amazonaws.com:5432/cruddur"
+
