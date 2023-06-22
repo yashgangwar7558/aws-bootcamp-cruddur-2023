@@ -1,5 +1,5 @@
 # from psycopg_pool import ConnectionPool
-from psycopg2.pool import ConnectionPool
+from psycopg_pool import ConnectionPool
 
 import os
 
