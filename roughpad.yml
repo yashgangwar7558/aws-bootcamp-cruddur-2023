@@ -1,3 +1,9 @@
+// setup
+install aws
+install psql
+change rds security group 
+running docker backend check PROD or LOCAL rds url
+
 // test postgres running on docker 
 postgres connection url - "postgresql://postgres:password@localhost:5432/cruddur"
 export CONNECTION_URL="postgresql://postgres:password@localhost:5432/cruddur"
