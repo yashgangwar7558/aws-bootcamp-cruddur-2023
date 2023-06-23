@@ -8,3 +8,11 @@ rds pass - rdspassword
 export PROD_CONNECTION_URL="postgresql://cruddurroot:cruddurpassword@cruddur-db-instance.c9mq3ztn8syj.us-east-1.rds.amazonaws.com:5432/cruddur"
 gp env PROD_CONNECTION_URL="postgresql://cruddurroot:cruddurpassword@cruddur-db-instance.c9mq3ztn8syj.us-east-1.rds.amazonaws.com:5432/cruddur"
 
+export DB_SG_ID="sg-0f186ff92c54187ea"
+gp env DB_SG_ID="sg-0f186ff92c54187ea"
+export DB_SG_RULE_ID="sgr-00339091ce2d8dddd"
+gp env DB_SG_RULE_ID="sgr-00339091ce2d8dddd"
+
+aws ec2 modify-security-group-rules \
+    --group-id $DB_SG_ID \
+    --security-group-rules "SecurityGroupRuleId=$DB_SG_RULE_ID,SecurityGroupRule={Description=GITPODD,IpProtocol=tcp,FromPort=5432,ToPort=5432,CidrIpv4=$GITPOD_IP/32}"
