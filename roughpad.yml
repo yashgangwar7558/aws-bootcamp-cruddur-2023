@@ -1,8 +1,11 @@
 // setup
+docker compose up
 install aws
 install psql
+install requirements.txt -> pip install ....
 change rds security group 
 running docker backend check PROD or LOCAL rds url
+set necessary env variables
 
 // test postgres running on docker 
 postgres connection url - "postgresql://postgres:password@localhost:5432/cruddur"
