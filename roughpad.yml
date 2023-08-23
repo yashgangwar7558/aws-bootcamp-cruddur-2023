@@ -6,6 +6,7 @@ install requirements.txt -> pip install ....
 change rds security group 
 running docker backend check PROD or LOCAL rds url
 set necessary env variables
+AWS_ENDPOINT_URL in docker backend is for dynamo db 
 
 // test postgres running on docker 
 postgres connection url - "postgresql://postgres:password@localhost:5432/cruddur"
@@ -21,6 +22,9 @@ export DB_SG_ID="sg-0f186ff92c54187ea"
 gp env DB_SG_ID="sg-0f186ff92c54187ea"
 export DB_SG_RULE_ID="sgr-00339091ce2d8dddd"
 gp env DB_SG_RULE_ID="sgr-00339091ce2d8dddd"
+
+export AWS_COGNITO_USER_POOL_ID="us-east-1_4oDGlBzZM"
+gp env AWS_COGNITO_USER_POOL_ID="us-east-1_4oDGlBzZM"
 
 aws ec2 modify-security-group-rules \
     --group-id $DB_SG_ID \
