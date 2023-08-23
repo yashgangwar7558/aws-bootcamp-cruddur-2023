@@ -9,7 +9,7 @@ from lib.db import db
 
 
 class HomeActivities:
-    def run():
+    def run(cognito_user_id=None):
       # honeycomb----
       # with tracer.start_as_current_span("home-activites-mock-data"):
       #   span = trace.get_current_span()
