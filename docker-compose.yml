@@ -17,7 +17,7 @@ services:
       AWS_COGNITO_USER_POOL_ID: "us-east-1_4oDGlBzZM"
       CONNECTION_URL: "postgresql://postgres:password@db:5432/cruddur"
       # PROD_CONNECTION_URL: "postgresql://cruddurroot:cruddurpassword@cruddur-db-instance.c9mq3ztn8syj.us-east-1.rds.amazonaws.com:5432/cruddur"
-      AWS_ENDPOINT_URL: "http://dynamodb-local:8000" 
+      # AWS_ENDPOINT_URL: "http://dynamodb-local:8000" # to use prod aws dynamo db comment this out
     build: ./backend-flask
     ports:
       - "4567:4567"
